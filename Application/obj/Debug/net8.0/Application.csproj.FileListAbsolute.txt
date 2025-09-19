@@ -1,0 +1,16 @@
+E:\Asp.Net\ECommerceInventory\Application\bin\Debug\net8.0\Application.deps.json
+E:\Asp.Net\ECommerceInventory\Application\bin\Debug\net8.0\Application.dll
+E:\Asp.Net\ECommerceInventory\Application\bin\Debug\net8.0\Application.pdb
+E:\Asp.Net\ECommerceInventory\Application\bin\Debug\net8.0\Core.dll
+E:\Asp.Net\ECommerceInventory\Application\bin\Debug\net8.0\Core.pdb
+E:\Asp.Net\ECommerceInventory\Application\obj\Debug\net8.0\Application.csproj.AssemblyReference.cache
+E:\Asp.Net\ECommerceInventory\Application\obj\Debug\net8.0\Application.GeneratedMSBuildEditorConfig.editorconfig
+E:\Asp.Net\ECommerceInventory\Application\obj\Debug\net8.0\Application.AssemblyInfoInputs.cache
+E:\Asp.Net\ECommerceInventory\Application\obj\Debug\net8.0\Application.AssemblyInfo.cs
+E:\Asp.Net\ECommerceInventory\Application\obj\Debug\net8.0\Application.csproj.CoreCompileInputs.cache
+E:\Asp.Net\ECommerceInventory\Application\obj\Debug\net8.0\Application.sourcelink.json
+E:\Asp.Net\ECommerceInventory\Application\obj\Debug\net8.0\Applicat.44B5EDA2.Up2Date
+E:\Asp.Net\ECommerceInventory\Application\obj\Debug\net8.0\Application.dll
+E:\Asp.Net\ECommerceInventory\Application\obj\Debug\net8.0\refint\Application.dll
+E:\Asp.Net\ECommerceInventory\Application\obj\Debug\net8.0\Application.pdb
+E:\Asp.Net\ECommerceInventory\Application\obj\Debug\net8.0\ref\Application.dll
