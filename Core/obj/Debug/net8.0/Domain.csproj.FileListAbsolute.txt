@@ -1,0 +1,12 @@
+D:\Antu\ECommerceInventory\Core\bin\Debug\net8.0\Domain.deps.json
+D:\Antu\ECommerceInventory\Core\bin\Debug\net8.0\Domain.dll
+D:\Antu\ECommerceInventory\Core\bin\Debug\net8.0\Domain.pdb
+D:\Antu\ECommerceInventory\Core\obj\Debug\net8.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Antu\ECommerceInventory\Core\obj\Debug\net8.0\Domain.AssemblyInfoInputs.cache
+D:\Antu\ECommerceInventory\Core\obj\Debug\net8.0\Domain.AssemblyInfo.cs
+D:\Antu\ECommerceInventory\Core\obj\Debug\net8.0\Domain.csproj.CoreCompileInputs.cache
+D:\Antu\ECommerceInventory\Core\obj\Debug\net8.0\Domain.sourcelink.json
+D:\Antu\ECommerceInventory\Core\obj\Debug\net8.0\Domain.dll
+D:\Antu\ECommerceInventory\Core\obj\Debug\net8.0\refint\Domain.dll
+D:\Antu\ECommerceInventory\Core\obj\Debug\net8.0\Domain.pdb
+D:\Antu\ECommerceInventory\Core\obj\Debug\net8.0\ref\Domain.dll

@@ -9,7 +9,7 @@
       "API/1.0.0": {
         "dependencies": {
           "Application": "1.0.0",
-          "Core": "1.0.0",
+          "Domain": "1.0.0",
           "Infrastucture": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.20",
           "Microsoft.AspNetCore.OpenApi": "8.0.13",
@@ -19,6 +19,14 @@
         },
         "runtime": {
           "API.dll": {}
+        }
+      },
+      "BCrypt.Net-Next/4.0.3": {
+        "runtime": {
+          "lib/net6.0/BCrypt.Net-Next.dll": {
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.0.3.0"
+          }
         }
       },
       "Humanizer.Core/2.14.1": {
@@ -824,8 +832,12 @@
       "System.Threading.Channels/7.0.0": {},
       "Application/1.0.0": {
         "dependencies": {
-          "Core": "1.0.0",
-          "MediatR": "13.0.0"
+          "BCrypt.Net-Next": "4.0.3",
+          "Domain": "1.0.0",
+          "MediatR": "13.0.0",
+          "Microsoft.EntityFrameworkCore": "9.0.9",
+          "Microsoft.Extensions.Configuration.Abstractions": "9.0.9",
+          "System.IdentityModel.Tokens.Jwt": "8.14.0"
         },
         "runtime": {
           "Application.dll": {
@@ -834,9 +846,9 @@
           }
         }
       },
-      "Core/1.0.0": {
+      "Domain/1.0.0": {
         "runtime": {
-          "Core.dll": {
+          "Domain.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -863,6 +875,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "BCrypt.Net-Next/4.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-W+U9WvmZQgi5cX6FS5GDtDoPzUCV4LkBLkywq/kRZhuDwcbavOzcDAr3LXJFqHUi952Yj3LEYoWW0jbEUQChsA==",
+      "path": "bcrypt.net-next/4.0.3",
+      "hashPath": "bcrypt.net-next.4.0.3.nupkg.sha512"
     },
     "Humanizer.Core/2.14.1": {
       "type": "package",
@@ -1289,7 +1308,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Core/1.0.0": {
+    "Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

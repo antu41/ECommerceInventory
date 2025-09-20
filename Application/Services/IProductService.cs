@@ -9,6 +9,6 @@ namespace Application.Services
         Task<ProductDto?> GetByIdAsync(Guid id, CancellationToken token);
         Task UpdateAsync(Guid id, ProductUpdateDto dto, CancellationToken token, string? imagePath = null);
         Task DeleteAsync(Guid id, CancellationToken token);
-        Task<IEnumerable<ProductDto>> SearchAsync(string keyword);
+        Task<IEnumerable<ProductDto>> SearchAsync(string keyword, CancellationToken token);
     }
 }

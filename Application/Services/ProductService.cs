@@ -145,7 +145,7 @@ namespace Application.Services
 
         }
 
-        public async Task<IEnumerable<ProductDto>> SearchAsync(string keyword)
+        public async Task<IEnumerable<ProductDto>> SearchAsync(string keyword, CancellationToken token)
         {
             try
             {
@@ -153,7 +153,7 @@ namespace Application.Services
                              .Include(p => p.Category)
                              .AsNoTracking()
                              .Where(p => p.Name.Contains(keyword) || p.Description.Contains(keyword))
-                             .ToListAsync();
+                             .ToListAsync(token);
 
                 return products.Select(p => new ProductDto
                 {
