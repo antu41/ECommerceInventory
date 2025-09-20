@@ -11,30 +11,57 @@ namespace API.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
-        private readonly IWebHostEnvironment _environment;
+        private readonly IHostEnvironment _environment;
 
-        public ProductsController(IProductService productService, IWebHostEnvironment environment)
+        public ProductsController(IProductService productService, IHostEnvironment environment)
         {
             _productService = productService;
             _environment = environment;
         }
 
         [HttpPost]
+        [Consumes("multipart/form-data")]
+        [HttpPost]
         public async Task<IActionResult> Create([FromForm] ProductCreateDto dto, CancellationToken token, IFormFile? image)
         {
             try
             {
                 string? imagePath = null;
+
                 if (image != null)
                 {
-                    var uploads = Path.Combine(_environment.WebRootPath, "images");
-                    if (!Directory.Exists(uploads)) Directory.CreateDirectory(uploads);
-                    var filePath = Path.Combine(uploads, image.FileName);
+                    // Allowed extensions
+                    var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp" };
+                    var extension = Path.GetExtension(image.FileName).ToLowerInvariant();
+
+                    if (string.IsNullOrEmpty(extension) || !allowedExtensions.Contains(extension))
+                        return BadRequest("Only photo formats are allowed (jpg, jpeg, png, gif, bmp, webp).");
+
+                    // Optional: check MIME type
+                    if (!image.ContentType.StartsWith("image/"))
+                        return BadRequest("Invalid file type. Only image files are allowed.");
+
+                    // Optional: check file size (max 2 MB here)
+                    const long maxFileSize = 2 * 1024 * 1024;
+                    if (image.Length > maxFileSize)
+                        return BadRequest("File size must be less than 2 MB.");
+
+                    // Save file with unique name
+                    var uploads = Path.Combine(_environment.ContentRootPath, "images");
+                    if (!Directory.Exists(uploads))
+                        Directory.CreateDirectory(uploads);
+
+                    // Add GUID to filename
+                    var uniqueFileName = $"{Guid.NewGuid()}{extension}";
+                    var filePath = Path.Combine(uploads, uniqueFileName);
+
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
                         await image.CopyToAsync(stream);
                     }
-                    imagePath = $"/images/{image.FileName}";
+
+                    // Store relative path
+                    imagePath = $"/images/{uniqueFileName}";
                 }
 
                 var product = await _productService.CreateAsync(dto, token, imagePath);
@@ -44,7 +71,6 @@ namespace API.Controllers
             {
                 throw;
             }
-
         }
 
         [HttpGet]
@@ -78,22 +104,47 @@ namespace API.Controllers
 
         }
 
+
         [HttpPut("{id}")]
+        [Consumes("multipart/form-data")]
         public async Task<IActionResult> Update(Guid id, [FromForm] ProductUpdateDto dto, CancellationToken token, IFormFile? image)
         {
             try
             {
                 string? imagePath = null;
+
                 if (image != null)
                 {
-                    var uploads = Path.Combine(_environment.WebRootPath, "images");
-                    if (!Directory.Exists(uploads)) Directory.CreateDirectory(uploads);
-                    var filePath = Path.Combine(uploads, image.FileName);
+                    // Allowed extensions
+                    var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp" };
+                    var extension = Path.GetExtension(image.FileName).ToLowerInvariant();
+
+                    if (string.IsNullOrEmpty(extension) || !allowedExtensions.Contains(extension))
+                        return BadRequest("Only photo formats are allowed (jpg, jpeg, png, gif, bmp, webp).");
+
+                    // Optional: check MIME type
+                    if (!image.ContentType.StartsWith("image/"))
+                        return BadRequest("Invalid file type. Only image files are allowed.");
+
+                    // Optional: check file size (max 2 MB)
+                    const long maxFileSize = 2 * 1024 * 1024;
+                    if (image.Length > maxFileSize)
+                        return BadRequest("File size must be less than 2 MB.");
+
+                    // Save file with unique name
+                    var uploads = Path.Combine(_environment.ContentRootPath, "images");
+                    if (!Directory.Exists(uploads))
+                        Directory.CreateDirectory(uploads);
+
+                    var uniqueFileName = $"{Guid.NewGuid()}{extension}";
+                    var filePath = Path.Combine(uploads, uniqueFileName);
+
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
                         await image.CopyToAsync(stream);
                     }
-                    imagePath = $"/images/{image.FileName}";
+
+                    imagePath = $"/images/{uniqueFileName}";
                 }
 
                 await _productService.UpdateAsync(id, dto, token, imagePath);
@@ -103,23 +154,40 @@ namespace API.Controllers
             {
                 throw;
             }
-
         }
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id, CancellationToken token)
         {
             try
             {
+                // 1. Get product details (including image path) before deleting
+                var product = await _productService.GetByIdAsync(id, token);
+                if (product == null)
+                    return NotFound();
+
+                // 2. Delete image file from directory if exists
+                if (!string.IsNullOrEmpty(product.ImagePath))
+                {
+                    var fullPath = Path.Combine(_environment.ContentRootPath, product.ImagePath.TrimStart('/').Replace("/", Path.DirectorySeparatorChar.ToString()));
+                    if (System.IO.File.Exists(fullPath))
+                    {
+                        System.IO.File.Delete(fullPath);
+                    }
+                }
+
+                // 3. Delete product record from DB
                 await _productService.DeleteAsync(id, token);
+
                 return NoContent();
             }
             catch (Exception)
             {
                 throw;
             }
-
         }
+
 
         [HttpGet("search")]
         public async Task<IActionResult> Search([FromQuery] string q, CancellationToken token)

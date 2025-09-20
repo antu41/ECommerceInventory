@@ -10,70 +10,97 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
+try
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "E-Commerce Inventory API", Version = "v1" });
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    // Add services
+    builder.Services.AddControllers();
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen(c =>
     {
-        In = ParameterLocation.Header,
-        Description = "Please enter JWT with Bearer into field",
-        Name = "Authorization",
-        Type = SecuritySchemeType.ApiKey
-    });
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
+        c.SwaggerDoc("v1", new OpenApiInfo
         {
-            new OpenApiSecurityScheme { Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" } },
-            new string[] { }
-        }
-    });
-});
+            Title = "E-Commerce Inventory API",
+            Version = "v1"
+        });
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
-
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
+        c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
         {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = builder.Configuration["Jwt:Issuer"],
-            ValidAudience = builder.Configuration["Jwt:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
-        };
+            Name = "Authorization",
+            Type = SecuritySchemeType.Http,
+            Scheme = "bearer",
+            BearerFormat = "JWT",
+            In = ParameterLocation.Header,
+            Description = "Enter your valid JWT token.\n\nExample: \"eyJhbGciOiJIUzI1NiIsInR5cCI6...\""
+        });
+
+        c.AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
+            {
+                new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                    }
+                },
+                new string[] {}
+            }
+        });
     });
 
-builder.Services.AddAuthorization();
+    // Database
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-var app = builder.Build();
+    // Dependency Injection
+    builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+    builder.Services.AddScoped<IAuthService, AuthService>();
+    builder.Services.AddScoped<IProductService, ProductService>();
+    builder.Services.AddScoped<ICategoryService, CategoryService>();
 
-// Configure middleware
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    // JWT Authentication
+    builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                ValidAudience = builder.Configuration["Jwt:Audience"],
+                IssuerSigningKey = new SymmetricSecurityKey(
+                    Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+            };
+        });
+
+    builder.Services.AddAuthorization();
+
+    var app = builder.Build();
+
+    // Configure middleware
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+
+    app.UseHttpsRedirection();
+    app.UseStaticFiles(); // For serving images
+
+    app.UseAuthentication();
+    app.UseAuthorization();
+
+    // Global exception handler
+    app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
+
+    app.MapControllers();
+
+    app.Run();
 }
-
-app.UseHttpsRedirection();
-app.UseStaticFiles(); // For serving images
-
-app.UseAuthentication();
-app.UseAuthorization();
-
-app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
-
-app.MapControllers();
-
-app.Run();
+catch (Exception)
+{
+    throw;
+}

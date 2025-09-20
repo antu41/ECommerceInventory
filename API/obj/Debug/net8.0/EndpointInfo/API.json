@@ -547,10 +547,10 @@
     },
     "securitySchemes": {
       "Bearer": {
-        "type": "apiKey",
-        "description": "Please enter JWT with Bearer into field",
-        "name": "Authorization",
-        "in": "header"
+        "type": "http",
+        "description": "Enter your valid JWT token.\n\nExample: \"eyJhbGciOiJIUzI1NiIsInR5cCI6...\"",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   },
