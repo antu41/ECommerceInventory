@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
 
-namespace Core.Repositories
+namespace Domain.Repositories
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        Task<TEntity> GetByIdAsync(int id);
+        Task<TEntity> GetByIdAsync(Guid id, CancellationToken token);
+        Task<TEntity?> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken token);
         IQueryable<TEntity> GetAll();
-        Task AddAsync(TEntity entity);
+        Task AddAsync(TEntity entity, CancellationToken token);
         void Update(TEntity entity);
         void Delete(TEntity entity);
     }

@@ -1,10 +1,6 @@
-﻿using Core.Repositories;
+﻿using Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace Infrastucture.Persistence
 {
@@ -19,18 +15,19 @@ namespace Infrastucture.Persistence
             _dbSet = context.Set<TEntity>();
         }
 
-        public async Task<TEntity> GetByIdAsync(int id)
+        public async Task<TEntity> GetByIdAsync(Guid id, CancellationToken token)
         {
-            var entity = await _dbSet.FindAsync(id);
+            var entity = await _dbSet.FindAsync(id, token);
             if (entity == null)
             {
                 throw new InvalidOperationException($"Entity of type {typeof(TEntity).Name} with ID {id} was not found.");
             }
             return entity;
         }
-
-        public IQueryable<TEntity> GetAll() => _dbSet.AsQueryable();
-        public async Task AddAsync(TEntity entity) => await _dbSet.AddAsync(entity);
+        public async Task<TEntity?> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken token)
+              => await _dbSet.FirstOrDefaultAsync(predicate, token);
+        public IQueryable<TEntity> GetAll() => _dbSet;
+        public async Task AddAsync(TEntity entity, CancellationToken token) => await _dbSet.AddAsync(entity, token);
         public void Update(TEntity entity) => _dbSet.Update(entity);
         public void Delete(TEntity entity) => _dbSet.Remove(entity);
     }

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Asp.Net\\ECommerceInventory\\Application\\Application.csproj": {}
+    "D:\\Antu\\ECommerceInventory\\Application\\Application.csproj": {}
   },
   "projects": {
-    "E:\\Asp.Net\\ECommerceInventory\\Application\\Application.csproj": {
+    "D:\\Antu\\ECommerceInventory\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Asp.Net\\ECommerceInventory\\Application\\Application.csproj",
+        "projectUniqueName": "D:\\Antu\\ECommerceInventory\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "E:\\Asp.Net\\ECommerceInventory\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\Antu Das\\.nuget\\packages\\",
-        "outputPath": "E:\\Asp.Net\\ECommerceInventory\\Application\\obj\\",
+        "projectPath": "D:\\Antu\\ECommerceInventory\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\GTR\\.nuget\\packages\\",
+        "outputPath": "D:\\Antu\\ECommerceInventory\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Antu Das\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\GTR\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,8 +32,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\Asp.Net\\ECommerceInventory\\Core\\Core.csproj": {
-                "projectPath": "E:\\Asp.Net\\ECommerceInventory\\Core\\Core.csproj"
+              "D:\\Antu\\ECommerceInventory\\Core\\Domain.csproj": {
+                "projectPath": "D:\\Antu\\ECommerceInventory\\Core\\Domain.csproj"
               }
             }
           }
@@ -48,15 +48,31 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
             "MediatR": {
               "target": "Package",
               "version": "[13.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.14.0, )"
             }
           },
           "imports": [
@@ -75,24 +91,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\Asp.Net\\ECommerceInventory\\Core\\Core.csproj": {
+    "D:\\Antu\\ECommerceInventory\\Core\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Asp.Net\\ECommerceInventory\\Core\\Core.csproj",
-        "projectName": "Core",
-        "projectPath": "E:\\Asp.Net\\ECommerceInventory\\Core\\Core.csproj",
-        "packagesPath": "C:\\Users\\Antu Das\\.nuget\\packages\\",
-        "outputPath": "E:\\Asp.Net\\ECommerceInventory\\Core\\obj\\",
+        "projectUniqueName": "D:\\Antu\\ECommerceInventory\\Core\\Domain.csproj",
+        "projectName": "Domain",
+        "projectPath": "D:\\Antu\\ECommerceInventory\\Core\\Domain.csproj",
+        "packagesPath": "C:\\Users\\GTR\\.nuget\\packages\\",
+        "outputPath": "D:\\Antu\\ECommerceInventory\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Antu Das\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\GTR\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -119,7 +135,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -140,7 +156,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

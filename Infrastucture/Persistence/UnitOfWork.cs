@@ -1,10 +1,5 @@
-﻿using Core.Entities;
-using Core.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Entities;
+using Domain.Repositories;
 
 namespace Infrastucture.Persistence
 {
@@ -23,7 +18,7 @@ namespace Infrastucture.Persistence
             Categories = new Repository<Category>(context);
         }
 
-        public async Task<int> SaveChangesAsync() => await _context.SaveChangesAsync();
+        public async Task<int> SaveChangesAsync(CancellationToken token) => await _context.SaveChangesAsync(token);
         public void Dispose() => _context.Dispose();
     }
 }
