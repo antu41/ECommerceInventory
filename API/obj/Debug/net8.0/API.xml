@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API</name>
+    </assembly>
+    <members>
+        <member name="M:API.Controllers.AuthController.Register(Application.DTOs.UserRegisterDto,System.Threading.CancellationToken)">
+            <summary>
+            Register a new user
+            </summary>
+            <remarks>
+            Sample request:
+            {
+              "username": "testuser",
+              "email": "test@example.com",
+              "password": "Password123!"
+            }
+            </remarks>
+            <param name="dto">User registration details</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <response code="200">Returns JWT access and refresh tokens</response>
+            <response code="400">User already exists or invalid input</response>
+        </member>
+        <member name="M:API.Controllers.AuthController.Login(Application.DTOs.UserLoginDto,System.Threading.CancellationToken)">
+            <summary>
+            Login user and return JWT tokens
+            </summary>
+            <remarks>
+            Sample request:
+            {
+              "email": "test@example.com",
+              "password": "Password123!"
+            }
+            </remarks>
+            <param name="dto">User login credentials</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <response code="200">Returns JWT access and refresh tokens</response>
+            <response code="401">Invalid credentials</response>
+        </member>
+        <member name="M:API.Controllers.AuthController.Refresh(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Refresh JWT token
+            </summary>
+            <remarks>
+            Sample request:
+            {
+              "refreshToken": "your-refresh-token"
+            }
+            </remarks>
+            <param name="refreshToken">Refresh token details</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <response code="200">Returns new JWT access and refresh tokens</response>
+            <response code="401">Invalid refresh token</response>
+        </member>
+        <member name="M:API.Controllers.CategoriesController.Create(Application.DTOs.CategoryCreateDto,System.Threading.CancellationToken)">
+            <summary>
+            Create a new category
+            </summary>
+            <remarks>
+            Sample request:
+            {
+              "name": "Electronics",
+              "description": "Gadgets and devices"
+            }
+            </remarks>
+            <param name="dto">Category creation details</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <response code="201">Category created successfully</response>
+            <response code="403">Unauthorized access</response>
+            <response code="409">Category name already exists</response>
+        </member>
+        <member name="M:API.Controllers.CategoriesController.GetAll(System.Threading.CancellationToken)">
+            <summary>
+            Get all categories with product counts
+            </summary>
+            <response code="200">List of categories</response>
+            <response code="403">Unauthorized access</response>
+        </member>
+        <member name="M:API.Controllers.CategoriesController.GetById(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Get category by ID
+            </summary>
+            <param name="id">Category ID</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <response code="200">Category details</response>
+            <response code="403">Unauthorized access</response>
+            <response code="404">Category not found</response>
+        </member>
+        <member name="M:API.Controllers.CategoriesController.Update(System.Guid,Application.DTOs.CategoryUpdateDto,System.Threading.CancellationToken)">
+            <summary>
+            Update category
+            </summary>
+            <remarks>
+            Sample request:
+            {
+              "name": "Updated Electronics",
+              "description": "Updated gadgets"
+            }
+            </remarks>
+            <param name="id">Category ID</param>
+            <param name="dto">Category update details</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <response code="200">Category updated successfully</response>
+            <response code="403">Unauthorized access</response>
+            <response code="404">Category not found</response>
+            <response code="409">Category name already exists</response>
+        </member>
+        <member name="M:API.Controllers.CategoriesController.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete category
+            </summary>
+            <param name="id">Category ID</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <response code="204">Category deleted successfully</response>
+            <response code="403">Unauthorized access</response>
+            <response code="404">Category not found</response>
+            <response code="409">Category has linked products</response>
+        </member>
+        <member name="M:API.Controllers.ProductsController.Create(Application.DTOs.ProductCreateDto,System.Threading.CancellationToken)">
+            <summary>
+            Create a new product
+            </summary>
+            <remarks>
+            Sample request (multipart/form-data):
+            - name: "Laptop"
+            - description: "High-performance laptop"
+            - price: 999.99
+            - stock: 50
+            - categoryId: 1
+            - image: (file upload, e.g., laptop.jpg)
+            </remarks>
+            <param name="dto">Product creation details</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <response code="201">Product created successfully</response>
+            <response code="400">Invalid input or image format</response>
+            <response code="403">Unauthorized access</response>
+        </member>
+        <member name="M:API.Controllers.ProductsController.GetAll(System.Nullable{System.Guid},System.Threading.CancellationToken,System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Int32,System.Int32)">
+            <summary>
+            Get all products with optional filters
+            </summary>
+            <remarks>
+            Sample request: GET /api/products?categoryId=1&amp;minPrice=10&amp;maxPrice=1000&amp;page=1&amp;limit=10
+            </remarks>
+            <param name="categoryId">Optional category ID filter</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <param name="minPrice">Optional minimum price filter</param>
+            <param name="maxPrice">Optional maximum price filter</param>
+            <param name="page">Page number (default: 1)</param>
+            <param name="limit">Items per page (default: 10)</param>
+            <response code="200">List of products</response>
+            <response code="403">Unauthorized access</response>
+        </member>
+        <member name="M:API.Controllers.ProductsController.GetById(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Get product by ID
+            </summary>
+            <param name="id">Product ID</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <response code="200">Product details</response>
+            <response code="403">Unauthorized access</response>
+            <response code="404">Product not found</response>
+        </member>
+        <member name="M:API.Controllers.ProductsController.Update(System.Guid,Application.DTOs.ProductUpdateDto,System.Threading.CancellationToken)">
+            <summary>
+            Update product
+            </summary>
+            <remarks>
+            Sample request (multipart/form-data):
+            - name: "Updated Laptop"
+            - description: "Updated high-performance laptop"
+            - price: 1099.99
+            - stock: 40
+            - categoryId: 1
+            - image: (file upload, e.g., updated_laptop.jpg)
+            </remarks>
+            <param name="id">Product ID</param>
+            <param name="dto">Product update details</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <response code="200">Product updated successfully</response>
+            <response code="400">Invalid input or image format</response>
+            <response code="403">Unauthorized access</response>
+            <response code="404">Product not found</response>
+        </member>
+        <member name="M:API.Controllers.ProductsController.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete product
+            </summary>
+            <param name="id">Product ID</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <response code="204">Product deleted successfully</response>
+            <response code="403">Unauthorized access</response>
+            <response code="404">Product not found</response>
+        </member>
+        <member name="M:API.Controllers.ProductsController.Search(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Search products by name or description
+            </summary>
+            <remarks>
+            Sample request: GET /api/products/search?q=laptop
+            </remarks>
+            <param name="q">Search keyword</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <response code="200">List of matching products</response>
+            <response code="403">Unauthorized access</response>
+        </member>
+    </members>
+</doc>

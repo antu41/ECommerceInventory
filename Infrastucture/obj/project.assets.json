@@ -60,6 +60,23 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Http.Features/5.0.17": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "5.0.1",
+          "System.IO.Pipelines": "5.0.2"
+        },
+        "compile": {
+          "lib/net5.0/Microsoft.AspNetCore.Http.Features.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net5.0/Microsoft.AspNetCore.Http.Features.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Bcl.AsyncInterfaces/7.0.0": {
         "type": "package",
         "compile": {
@@ -983,7 +1000,7 @@
       "System.IO.Pipelines/9.0.9": {
         "type": "package",
         "compile": {
-          "lib/net8.0/_._": {
+          "lib/net8.0/System.IO.Pipelines.dll": {
             "related": ".xml"
           }
         },
@@ -1096,6 +1113,7 @@
           "BCrypt.Net-Next": "4.0.3",
           "Domain": "1.0.0",
           "MediatR": "13.0.0",
+          "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "Microsoft.EntityFrameworkCore": "9.0.9",
           "Microsoft.Extensions.Configuration.Abstractions": "9.0.9",
           "System.IdentityModel.Tokens.Jwt": "8.14.0"
@@ -1105,16 +1123,6 @@
         },
         "runtime": {
           "bin/placeholder/Application.dll": {}
-        }
-      },
-      "Core/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "compile": {
-          "bin/placeholder/Core.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Core.dll": {}
         }
       },
       "Domain/1.0.0": {
@@ -1211,6 +1219,25 @@
         "lib/netstandard2.0/MediatR.Contracts.xml",
         "mediatr.contracts.2.0.1.nupkg.sha512",
         "mediatr.contracts.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Http.Features/5.0.17": {
+      "sha512": "3jG2xS+dx8DDCGV/F+STdPTg89lX3ao3dF/VEPvJaz3wzBIjuadipTtYNEXDIVuOPZwb6jdmhrX9jkzOIBm5cw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.http.features/5.0.17",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.AspNetCore.Http.Features.dll",
+        "lib/net461/Microsoft.AspNetCore.Http.Features.xml",
+        "lib/net5.0/Microsoft.AspNetCore.Http.Features.dll",
+        "lib/net5.0/Microsoft.AspNetCore.Http.Features.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.xml",
+        "microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
+        "microsoft.aspnetcore.http.features.nuspec"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/7.0.0": {
@@ -3264,11 +3291,6 @@
       "path": "../Application/Application.csproj",
       "msbuildProject": "../Application/Application.csproj"
     },
-    "Core/1.0.0": {
-      "type": "project",
-      "path": "../Core/Core.csproj",
-      "msbuildProject": "../Core/Core.csproj"
-    },
     "Domain/1.0.0": {
       "type": "project",
       "path": "../Core/Domain.csproj",
@@ -3278,7 +3300,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "Application >= 1.0.0",
-      "Core >= 1.0.0",
+      "Domain >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 9.0.9",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.9",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 9.0.4"
@@ -3291,9 +3313,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Antu\\ECommerceInventory\\Infrastucture\\Infrastucture.csproj",
-      "projectName": "Infrastucture",
-      "projectPath": "D:\\Antu\\ECommerceInventory\\Infrastucture\\Infrastucture.csproj",
+      "projectUniqueName": "D:\\Antu\\ECommerceInventory\\Infrastucture\\Infrastructure.csproj",
+      "projectName": "Infrastructure",
+      "projectPath": "D:\\Antu\\ECommerceInventory\\Infrastucture\\Infrastructure.csproj",
       "packagesPath": "C:\\Users\\GTR\\.nuget\\packages\\",
       "outputPath": "D:\\Antu\\ECommerceInventory\\Infrastucture\\obj\\",
       "projectStyle": "PackageReference",
@@ -3319,8 +3341,8 @@
             "D:\\Antu\\ECommerceInventory\\Application\\Application.csproj": {
               "projectPath": "D:\\Antu\\ECommerceInventory\\Application\\Application.csproj"
             },
-            "D:\\Antu\\ECommerceInventory\\Core\\Core.csproj": {
-              "projectPath": "D:\\Antu\\ECommerceInventory\\Core\\Core.csproj"
+            "D:\\Antu\\ECommerceInventory\\Core\\Domain.csproj": {
+              "projectPath": "D:\\Antu\\ECommerceInventory\\Core\\Domain.csproj"
             }
           }
         }

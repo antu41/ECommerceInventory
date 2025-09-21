@@ -1,4 +1,6 @@
-﻿namespace Application.DTOs
+﻿using Microsoft.AspNetCore.Http;
+
+namespace Application.DTOs
 {
     public class ProductUpdateDto
     {
@@ -7,6 +9,7 @@
         public decimal? Price { get; set; }
         public int? Stock { get; set; }
         public Guid? CategoryId { get; set; }
+        public IFormFile? Image { get; set; }
 
     }
 }

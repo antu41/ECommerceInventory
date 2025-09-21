@@ -42,14 +42,14 @@ namespace Application.Services
 
         }
 
-        public async Task<IEnumerable<CategoryDto>> GetAllAsync()
+        public async Task<IEnumerable<CategoryDto>> GetAllAsync(CancellationToken token)
         {
             try
             {
                 var categories = await _unitOfWork.Categories.GetAll()
                     .Include(c => c.Products)
                     .AsNoTracking()
-                    .ToListAsync();
+                    .ToListAsync(token);
 
                 return categories.Select(c => new CategoryDto
                 {

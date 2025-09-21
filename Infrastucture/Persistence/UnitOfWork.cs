@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Repositories;
 
-namespace Infrastucture.Persistence
+namespace Infrastructure.Persistence
 {
     public class UnitOfWork : IUnitOfWork
     {

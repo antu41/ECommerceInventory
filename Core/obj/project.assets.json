@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Antu\\ECommerceInventory\\Core\\Core.csproj",
-      "projectName": "Core",
-      "projectPath": "D:\\Antu\\ECommerceInventory\\Core\\Core.csproj",
+      "projectUniqueName": "D:\\Antu\\ECommerceInventory\\Core\\Domain.csproj",
+      "projectName": "Domain",
+      "projectPath": "D:\\Antu\\ECommerceInventory\\Core\\Domain.csproj",
       "packagesPath": "C:\\Users\\GTR\\.nuget\\packages\\",
       "outputPath": "D:\\Antu\\ECommerceInventory\\Core\\obj\\",
       "projectStyle": "PackageReference",

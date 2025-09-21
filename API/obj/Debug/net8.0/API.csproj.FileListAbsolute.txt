@@ -162,6 +162,7 @@ D:\Antu\ECommerceInventory\API\bin\Debug\net8.0\API.deps.json
 D:\Antu\ECommerceInventory\API\bin\Debug\net8.0\API.runtimeconfig.json
 D:\Antu\ECommerceInventory\API\bin\Debug\net8.0\API.dll
 D:\Antu\ECommerceInventory\API\bin\Debug\net8.0\API.pdb
+D:\Antu\ECommerceInventory\API\bin\Debug\net8.0\API.xml
 D:\Antu\ECommerceInventory\API\bin\Debug\net8.0\BCrypt.Net-Next.dll
 D:\Antu\ECommerceInventory\API\bin\Debug\net8.0\Humanizer.dll
 D:\Antu\ECommerceInventory\API\bin\Debug\net8.0\MediatR.dll
@@ -282,10 +283,10 @@ D:\Antu\ECommerceInventory\API\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.W
 D:\Antu\ECommerceInventory\API\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 D:\Antu\ECommerceInventory\API\bin\Debug\net8.0\Application.dll
 D:\Antu\ECommerceInventory\API\bin\Debug\net8.0\Domain.dll
-D:\Antu\ECommerceInventory\API\bin\Debug\net8.0\Infrastucture.dll
+D:\Antu\ECommerceInventory\API\bin\Debug\net8.0\Infrastructure.dll
 D:\Antu\ECommerceInventory\API\bin\Debug\net8.0\Application.pdb
 D:\Antu\ECommerceInventory\API\bin\Debug\net8.0\Domain.pdb
-D:\Antu\ECommerceInventory\API\bin\Debug\net8.0\Infrastucture.pdb
+D:\Antu\ECommerceInventory\API\bin\Debug\net8.0\Infrastructure.pdb
 D:\Antu\ECommerceInventory\API\obj\Debug\net8.0\API.csproj.AssemblyReference.cache
 D:\Antu\ECommerceInventory\API\obj\Debug\net8.0\rpswa.dswa.cache.json
 D:\Antu\ECommerceInventory\API\obj\Debug\net8.0\API.GeneratedMSBuildEditorConfig.editorconfig
@@ -307,6 +308,7 @@ D:\Antu\ECommerceInventory\API\obj\Debug\net8.0\staticwebassets.upToDateCheck.tx
 D:\Antu\ECommerceInventory\API\obj\Debug\net8.0\API.csproj.Up2Date
 D:\Antu\ECommerceInventory\API\obj\Debug\net8.0\API.dll
 D:\Antu\ECommerceInventory\API\obj\Debug\net8.0\refint\API.dll
+D:\Antu\ECommerceInventory\API\obj\Debug\net8.0\API.xml
 D:\Antu\ECommerceInventory\API\obj\Debug\net8.0\API.pdb
 D:\Antu\ECommerceInventory\API\obj\Debug\net8.0\API.genruntimeconfig.cache
 D:\Antu\ECommerceInventory\API\obj\Debug\net8.0\ref\API.dll

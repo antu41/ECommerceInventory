@@ -26,7 +26,9 @@ namespace Application.Services
                     Price = dto.Price,
                     Stock = dto.Stock,
                     CategoryId = dto.CategoryId,
-                    ImagePath = imagePath
+                    ImagePath = string.IsNullOrWhiteSpace(imagePath)
+                        ? string.Empty
+                        : imagePath
                 };
 
                 await _unitOfWork.Products.AddAsync(product, token);
@@ -149,11 +151,15 @@ namespace Application.Services
         {
             try
             {
+                var keywordLower = keyword.ToLower();
+
                 var products = await _unitOfWork.Products.GetAll()
-                             .Include(p => p.Category)
-                             .AsNoTracking()
-                             .Where(p => p.Name.Contains(keyword) || p.Description.Contains(keyword))
-                             .ToListAsync(token);
+                    .Include(p => p.Category)
+                    .AsNoTracking()
+                    .Where(p => p.Name.ToLower().Contains(keywordLower)
+                             || p.Description.ToLower().Contains(keywordLower))
+                    .ToListAsync(token);
+
 
                 return products.Select(p => new ProductDto
                 {

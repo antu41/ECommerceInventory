@@ -9,7 +9,7 @@
       "Infrastucture/1.0.0": {
         "dependencies": {
           "Application": "1.0.0",
-          "Core": "1.0.0",
+          "Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "9.0.9",
           "Microsoft.EntityFrameworkCore.Tools": "9.0.9",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.4"
